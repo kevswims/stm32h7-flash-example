@@ -1,0 +1,44 @@
+[package]
+name = "bootloader"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+flash-lib = { version = "0.1.0", path = "../flash-lib" }
+
+embassy-stm32 = { version = "0.2.0", features = ["stm32h7s3l8", "time-driver-tim2", "exti", "unstable-pac", "chrono"] }
+embassy-sync = { version = "0.6.2", features = [] }
+embassy-executor = { version = "0.7.0", features = ["arch-cortex-m", "executor-thread", "executor-interrupt"] }
+embassy-time = { version = "0.4.0", features = ["tick-hz-1_000_000"] }
+
+cortex-m = {version = "0.7.7", features = ["critical-section-single-core"]}
+cortex-m-rt = "0.7.5"
+panic-probe = "0.3.2"
+
+[patch.crates-io]
+# embassy-stm32 = { git = "https://github.com/lucimobility/embassy.git", rev = "206c1b1e046fa41e5a3a27cc69417d377e9f18f3"}
+# embassy-sync = { git = "https://github.com/lucimobility/embassy.git", rev = "206c1b1e046fa41e5a3a27cc69417d377e9f18f3"}
+# embassy-executor = { git = "https://github.com/lucimobility/embassy.git", rev = "206c1b1e046fa41e5a3a27cc69417d377e9f18f3"}
+# embassy-time = { git = "https://github.com/lucimobility/embassy.git", rev = "206c1b1e046fa41e5a3a27cc69417d377e9f18f3"}
+embassy-stm32 = { git = "https://github.com/embassy-rs/embassy", rev = "e145a653cf9d31f101b0735406b8b7c9208bc1da"}
+embassy-sync = { git = "https://github.com/embassy-rs/embassy", rev = "e145a653cf9d31f101b0735406b8b7c9208bc1da"}
+embassy-executor = { git = "https://github.com/embassy-rs/embassy", rev = "e145a653cf9d31f101b0735406b8b7c9208bc1da"}
+embassy-time = { git = "https://github.com/embassy-rs/embassy", rev = "e145a653cf9d31f101b0735406b8b7c9208bc1da"}
+
+[profile.dev]
+codegen-units = 1
+debug = 2
+debug-assertions = true
+incremental = false
+opt-level = 2
+overflow-checks = true
+
+# cargo build/run --release
+[profile.release]
+codegen-units = 1
+debug = 2
+debug-assertions = false
+incremental = false
+lto = 'fat'
+opt-level = 3
+overflow-checks = false

@@ -1,0 +1,25 @@
+[package]
+authors = ["Kevin Lannen <kevin@luci.com>"]
+edition = "2021"
+readme = "README.md"
+name = "flash-algo"
+version = "0.1.0"
+
+[dependencies]
+cortex-m = { version = "0.7.0", features = ["critical-section-single-core"] }
+flash-algorithm = { version = "0.4.0" }
+rtt-target = { version = "0.3", features = ["cortex-m"] }
+
+embassy-stm32 = { version = "0.2.0", features = ["stm32h7s3l8", "unstable-pac"] }
+critical-section = "1.1"
+
+flash-lib = { version = "0.1.0", path = "../flash-lib" }
+
+[patch.crates-io]
+embassy-stm32 = { git = "https://github.com/embassy-rs/embassy", rev = "e145a653cf9d31f101b0735406b8b7c9208bc1da"}
+
+# this lets you use `cargo fix`!
+[[bin]]
+name = "flash-algo"
+test = false
+bench = false

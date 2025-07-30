@@ -1,0 +1,8 @@
+[build]
+target = "thumbv7em-none-eabihf"
+
+[target.thumbv7em-none-eabihf]
+runner = 'probe-rs run --chip STM32H7S3L8Hx --protocol swd --chip-description-path ./definition.yaml --connect-under-reset'
+
+[env]
+DEFMT_LOG = "info"

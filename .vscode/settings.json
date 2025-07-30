@@ -1,0 +1,6 @@
+{
+    "rust-analyzer.cargo.features": [
+        "flash-test",
+    ],
+    "rust-analyzer.check.allTargets": false,
+}
