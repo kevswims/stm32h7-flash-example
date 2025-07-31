@@ -12,9 +12,10 @@ async fn main(_spawner: Spawner) {
 
     let mut flash = SpiFlashMemory::new(r.flash_memory);
 
-    // let mut flash = flash.into_octo();
 
     let flash_id = flash.read_id();
+
+    let mut flash = flash.into_octo();
 
     flash.enable_mm();
 
